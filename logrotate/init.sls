@@ -1,5 +1,13 @@
 {% from "logrotate/map.jinja" import logrotate with context %}
 
+{%- if 'cron_run_hourly' in logrotate and logrotate.cron_run_hourly %}
+logrotate_cron_run_hourly:
+  file.rename:
+    name: /etc/cron.daily/logrotate
+    source: /etc/cron.hourly/logrotate
+    force: True
+{%- end if %}
+
 logrotate:
   pkg.installed:
     - name: {{ logrotate.pkg|json }}
@@ -17,4 +25,3 @@ logrotate_directory:
     - makedirs: True
     - require:
       - pkg: logrotate
-

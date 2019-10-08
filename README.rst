@@ -30,4 +30,9 @@ Manages logrotate config and include dir.
 
 Create custom job for logrotate.
 
+``logrotate.cron_run_hourly``
+------------------
+
+Changes logrotate to run hourly instead of the default daily.
+
 
